@@ -3,10 +3,12 @@ def whyrun_supported?
 end
 
 def mk_insideparms(s)
-    when '10_minutes'
-        return true
-    else
-        return false
+    case s
+        when '10_minutes'
+            return true
+        else
+            return false
+    end
 end
 
 def mk_cronparms(s)
@@ -31,6 +33,7 @@ def mk_cronparms(s)
             return %w(21 0 1 */3 *)
         else
             raise "unknown btrfs-snap schedule '#{s}'"
+    end
 end
 
 def mk_schedparms(s)
@@ -55,6 +58,7 @@ def mk_schedparms(s)
             return '3mo 4'
         else
             raise "unknown btrfs-snap schedule '#{s}'"
+    end
 end
 
 def mkcommand(r, s)
