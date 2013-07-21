@@ -1,2 +1,2 @@
-include_recipe 'btrfs-snap::install'
+include_recipe 'btrfs_snap::install'
 

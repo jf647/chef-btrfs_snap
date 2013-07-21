@@ -61,9 +61,9 @@ def mk_schedparms(s)
     end
 end
 
-def mkcommand(r, s)
-    command = "#{node['btrfs-snap']['dir']}/bin/btrfs-snap"
-    if ! insideparms(s)
+def mk_command(r, s)
+    command = "#{node['btrfs_snap']['dir']}/bin/btrfs-snap"
+    if ! mk_insideparms(s)
         command += " -b #{r.basedir}"
     end
     if r.readonly
@@ -74,9 +74,7 @@ def mkcommand(r, s)
 end
 
 action :create do
-    if r.basedir.nil?
-        r.basedir = node['btrfs-snap']['snapshot_base']
-    end
+    new_resource.basedir( new_resource.basedir || node['btrfs_snap']['snapshot_base'] )
     converge_by "creating btrfs-snap cronjobs" do
         new_resource.schedule.each do |s|
             cronparms = mk_cronparms(s)
