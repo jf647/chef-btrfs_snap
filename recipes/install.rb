@@ -1,16 +1,12 @@
-directory node['btrfs_snap']['dir'] do
-    owner "root"
-    group "root"
-    mode 0755
+[ node['btrfs_snap']['install_dir'], "#{node['btrfs_snap']['install_dir']}/bin" ].each do |dir|
+    directory dir do
+        owner "root"
+        group "root"
+        mode 0755
+    end
 end
 
-directory "#{node['btrfs_snap']['dir']}/bin" do
-    owner "root"
-    group "root"
-    mode 0755
-end
-
-git "#{Chef::Config[:file_cache_path]}/btfs-snap" do
+git "#{Chef::Config[:file_cache_path]}/btrfs-snap" do
     repository node['btrfs_snap']['git_url']
     reference node['btrfs_snap']['git_ref']
     notifies :run, "bash[install btrfs-snap]"
