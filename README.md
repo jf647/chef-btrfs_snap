@@ -122,14 +122,16 @@ Add `recipe[btrfs_snap::snapshot]` to your node's run list.  Configure one or mo
 
 In a recipe:
 
-  include_recipe 'btrfs'
+```ruby
+include_recipe 'btrfs'
 
-  btrfs_snap_snapshot "name" do
+btrfs_snap_snapshot "name" do
     mount "/etc"
     schedule [ '1_week', '3_months' ]
     readonly false
     basedir "/foo"
-  end
+end
+```
 
 ### Perform a Periodic Filesystem Scrub
 
