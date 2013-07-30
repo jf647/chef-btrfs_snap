@@ -14,12 +14,12 @@ end
 
 bash "install btrfs-snap" do
     action :nothing
-    cwd "#{Chef::Config[:file_cache_path]}/btfs-snap"
+    cwd "#{Chef::Config[:file_cache_path]}/btrfs-snap"
     user "root"
     group "root"
     code <<-eos
-        cp btrfs-snap #{node['btrfs_snap']['dir']}/bin
-        chown root:root #{node['btrfs_snap']['dir']}/bin/btrfs-snap
-        chmod 755 #{node['btrfs_snap']['dir']}/bin/btrfs-snap
+        cp btrfs-snap #{node['btrfs_snap']['install_dir']}/bin
+        chown root:root #{node['btrfs_snap']['install_dir']}/bin/btrfs-snap
+        chmod 755 #{node['btrfs_snap']['install_dir']}/bin/btrfs-snap
     eos
 end
